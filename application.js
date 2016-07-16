@@ -3,8 +3,6 @@
  */
 
 // global variable
-
-
 function Holidays() {
 
   var countryData = [];
