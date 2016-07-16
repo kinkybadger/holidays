@@ -7,7 +7,7 @@
 
 function Holidays() {
 
-  var data = [];
+  var countryData = [];
 
   this.countryUrl = 'tours.json';
 
@@ -22,6 +22,9 @@ function Holidays() {
 
     })
     .done(function(data, status) {
+
+      countryData = data;
+
       console.log(data[0].country, status);
 
       var countries = $('<ul id="country"></ul>');
@@ -29,7 +32,7 @@ function Holidays() {
       for(i in data) {
         console.log(data[i].country);
 
-        $('<li><a href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
+        $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
       }
 
 
@@ -43,33 +46,27 @@ function Holidays() {
 
   }
 
-
+  // event handlers
   $('#country').on('click', 'a', function() {
-    console.log('i was clicked', $(this).attr('href'));
+    var id = $(this).attr('id');
+
+    console.log(id);
+
+   // console.log(countryData[id].cities);
+    $('h2.country').html('');
+
+    for(i in countryData[id].cities) {
+      console.log(countryData[id].cities[i].name);
+      console.log(countryData[id].cities[i].description);
+      console.log(countryData[id].cities[i].price);
+
+      $('h2.country').append(countryData[id].cities[i].name);
+    }
+
+
+
   });
-  //return this.countries;
 
-
-  // Set the country object on click in new TakeTour() object.
-//  this.setCountry = function(e) {
-//
-//    e.preventDefault();
-//
-//    var selected = $(this).attr('href');
-//
-//    this.country = selected;
-//
-//    //console.log(selected);
-//
-//    $('.city').fadeIn();
-//    //$(this).find('.city').fadeIn();
-//
-//    return this.country;
-//
-//
-//  }
-
-  // Events
 
 }
 
