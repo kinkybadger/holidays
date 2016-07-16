@@ -23,7 +23,7 @@ function Holidays() {
 
       countryData = data;
 
-      // console.log(data[0].country, status);
+       console.log(data[0].country, status);
 
       var countries = $('<ul id="country"></ul>');
 
