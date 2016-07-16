@@ -32,17 +32,17 @@ function Holidays() {
         // console.log(data[i].country);
 
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
+
       }
 
-
       $('#country').detach().html(countries).appendTo('.menu');
+
+      $('h2.country').html(data[0].country).prepend('.tour');
 
     })
     .fail(function(request, errorType, errorMessage) {
       console.log("error: " + errorType + " = " + errorMessage);
     })
-
-
   }
 
   // event handlers
@@ -59,10 +59,16 @@ function Holidays() {
         + '<p class="description">' + countryData[id].cities[i].description + '</p>'
         + '<p class="price">' + countryData[id].cities[i].price
         + '</p></div>');
-
+        // console.log(countryData[id].country);
     }
 
+    // not pretty, but works!
+    $('<h2 class="">'+ countryData[id].country + '</h2>').prependTo('.tour');
+    // display result from clicked item.
     markUp.append(markUp).fadeIn();
+
+
+    console.log(countryData[id].country);
 
   });
 
