@@ -1,49 +1,70 @@
 /**
- * ------------------------------ View some tours -------------------------------
+ * ------------------------------ Get some tours -------------------------------
  */
+
+// global variable
 function Holidays() {
+
+  var countryData = [];
+
+  this.countryUrl = 'tours.json';
+
+  this.setUrl = function(url) {
+    this.countryUrl = url;
+  };
 
   // Helpers
   this.getCountries = function() {
     // Get the json
-    $.getJSON('tours.json')
-      .done(function(data) {
-        console.log(data);
+    $.getJSON(this.countryUrl, function() {
 
-        //var countries = $('<li></li>');
+    })
+    .done(function(data, status) {
 
-        //$('<a href=#'+country.country+' id='+index+'>'+country.country+'</a>').appendTo(countries);
+      countryData = data;
 
-      });
+      console.log(data[0].country, status);
 
-      //$('#country').detach().html(countries).appendTo('.menu');
+      var countries = $('<ul id="country"></ul>');
 
+      for(i in data) {
+        console.log(data[i].country);
+
+        $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
+      }
+
+
+      $('#country').detach().html(countries).appendTo('.menu');
+
+    })
+    .fail(function(request, errorType, errorMessage) {
+      console.log("error: " + errorType + " = " + errorMessage);
+    })
+
+
+  }
+
+  // event handlers
+  $('#country').on('click', 'a', function() {
+    var id = $(this).attr('id');
+
+    console.log(id);
+
+   // console.log(countryData[id].cities);
+    $('h2.country').html('');
+
+    for(i in countryData[id].cities) {
+      console.log(countryData[id].cities[i].name);
+      console.log(countryData[id].cities[i].description);
+      console.log(countryData[id].cities[i].price);
+
+      $('h2.country').append(countryData[id].cities[i].name);
     }
 
-    //return this.countries;
 
 
-  // Set the country object on click in new TakeTour() object.
-//  this.setCountry = function(e, selected) {
-//
-//    e.preventDefault();
-//
-//    selected = $(this).attr('href');
-//
-//    this.country = selected;
-//
-//    //console.log(selected);
-//
-//    $('.city').fadeIn();
-//    //$(this).find('.city').fadeIn();
-//
-//    return this.country;
-//
-//
-//  }
+  });
 
-  // Events
-  //$('#country').on('click', 'a', this.setCountry);
 
 }
 
@@ -55,6 +76,7 @@ $(document).ready(function() {
   var holidays = new Holidays();
 
   holidays.getCountries();
+
 
 
 });
