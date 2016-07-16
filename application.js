@@ -23,12 +23,13 @@ function Holidays() {
 
       countryData = data;
 
-      console.log(data[0].country, status);
+      // console.log(data[0].country, status);
 
       var countries = $('<ul id="country"></ul>');
 
       for(i in data) {
-        //console.log(data[i].country);
+
+        // console.log(data[i].country);
 
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
       }
@@ -47,25 +48,23 @@ function Holidays() {
   // event handlers
   $('#country').on('click', 'a', function() {
     var id = $(this).attr('id');
-
-    console.log(id);
-
-   // console.log(countryData[id].cities);
-
-    $('h2.country').html('');
+    // console.log(id);
+    // console.log(countryData[id].cities);
+    var markUp =  $('.tour').html('');
 
     for(i in countryData[id].cities) {
-      console.log(countryData[id].cities[i].name);
-      console.log(countryData[id].cities[i].description);
-      console.log(countryData[id].cities[i].price);
 
-      $('<div>'+countryData[id].cities[i].name+'</div>').append();
+      markUp.append('<div class="city">'
+        + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
+        + '<p class="description">' + countryData[id].cities[i].description + '</p>'
+        + '<p class="price">' + countryData[id].cities[i].price
+        + '</p></div>');
+
     }
 
-
+    markUp.append(markUp).fadeIn();
 
   });
-
 
 }
 
