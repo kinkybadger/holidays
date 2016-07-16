@@ -1,0 +1,150 @@
+[{
+  "country": {
+    "England": {
+      "city": {
+        "london": {
+          "title": "London",
+          "description": "English Tour",
+          "price": "450.0",
+          "nights": "1",
+          "confirmation": "ef63kd",
+          "photos": {
+            "image1": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image2": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image3": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "source": "assets/photos/"
+          }
+        },
+        "nottingham": {
+          "title": "Nottingham",
+          "description": "English Tour",
+          "price": "50.0",
+          "nights": "1",
+          "confirmation": "ef63kd",
+          "photos": {
+            "image1": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image2": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image3": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "source": "assets/photos/"
+          }
+        }
+      }
+    },
+    "France": {
+      "city": {
+        "paris": {
+          "title": "Paris",
+          "description": "French Tour",
+          "price": "250.0",
+          "nights": "1",
+          "confirmation": "ef63kd",
+          "photos": {
+            "image1": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image2": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image3": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "source": "assets/photos/"
+          }
+        },
+        "lyon": {
+          "title": "Lyon",
+          "country": "France",
+          "description": "French Tour",
+          "price": "150.0",
+          "nights": "1",
+          "confirmation": "ef63kd",
+          "photos": {
+            "image1": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image2": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image3": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "source": "assets/photos/"
+          }
+        }
+      }
+    },
+    "Italy":  {
+      "city": {
+        "milan": {
+          "title": "Milan",
+          "description": "Italian Tour",
+          "price": "350.0",
+          "nights": "1",
+          "confirmation": "ef63kd",
+          "photos": {
+            "image1": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image2": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image3": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "source": "assets/photos/"
+          }
+        },
+        "naples": {
+          "title": "Naples",
+          "country": "Italy",
+          "description": "Italian Tour",
+          "price": "150.0",
+          "nights": "1",
+          "confirmation": "ef63kd",
+          "photos": {
+            "image1": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image2": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "image3": {
+              "name": "filename.jpg",
+              "title": "A file name"
+            },
+            "source": "assets/photos/"
+          }
+        }
+      }
+    }
+  }
+}]
