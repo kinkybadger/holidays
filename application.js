@@ -23,7 +23,7 @@ function Holidays() {
 
       countryData = data;
 
-      // console.log(data[0].country, status);
+      console.log(data[0].country, status);
 
       var countries = $('<ul id="country"></ul>');
 
@@ -54,7 +54,7 @@ function Holidays() {
 
     for(i in countryData[id].cities) {
 
-      markUp.append('<div class="city">'
+      markUp.append('<div class="city" data-location="' + countryData[id].cities[i].name + '">'
         + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
         + '<p class="description">' + countryData[id].cities[i].description + '</p>'
         + '<p class="price">' + countryData[id].cities[i].price
