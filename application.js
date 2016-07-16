@@ -1,7 +1,13 @@
 /**
  * ------------------------------ Get some tours -------------------------------
  */
+
+// global variable
+
+
 function Holidays() {
+
+  var data = [];
 
   this.countryUrl = 'tours.json';
 
@@ -18,12 +24,12 @@ function Holidays() {
     .done(function(data, status) {
       console.log(data[0].country, status);
 
-      var countries = $('<li></li>');
+      var countries = $('<ul id="country"></ul>');
 
-      for(country in data) {
-        console.log(country);
+      for(i in data) {
+        console.log(data[i].country);
 
-        $('<a href=#'+country.country+'>'+country.country+'</a>').appendTo(countries);
+        $('<li><a href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
       }
 
 
@@ -35,9 +41,12 @@ function Holidays() {
     })
 
 
-
   }
 
+
+  $('#country').on('click', 'a', function() {
+    console.log('i was clicked', $(this).attr('href'));
+  });
   //return this.countries;
 
 
@@ -61,7 +70,6 @@ function Holidays() {
 //  }
 
   // Events
-  //$('#country').on('click', 'a', this.setCountry);
 
 }
 
@@ -72,15 +80,8 @@ $(document).ready(function() {
 
   var holidays = new Holidays();
 
-  console.log(holidays.countryUrl);
-
   holidays.getCountries();
 
-  holidays.setUrl('bad url');
-
-  holidays.getCountries();
-
-  console.log(holidays.countryUrl);
 
 
 });
