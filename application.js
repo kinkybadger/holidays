@@ -28,7 +28,7 @@ function Holidays() {
       var countries = $('<ul id="country"></ul>');
 
       for(i in data) {
-        console.log(data[i].country);
+        //console.log(data[i].country);
 
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
       }
@@ -51,6 +51,7 @@ function Holidays() {
     console.log(id);
 
    // console.log(countryData[id].cities);
+
     $('h2.country').html('');
 
     for(i in countryData[id].cities) {
@@ -58,7 +59,7 @@ function Holidays() {
       console.log(countryData[id].cities[i].description);
       console.log(countryData[id].cities[i].price);
 
-      $('h2.country').append(countryData[id].cities[i].name);
+      $('<div>'+countryData[id].cities[i].name+'</div>').append();
     }
 
 
