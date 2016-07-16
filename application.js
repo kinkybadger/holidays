@@ -23,7 +23,7 @@ function Holidays() {
 
       countryData = data;
 
-      console.log(data[0].country, status);
+      // console.log(data[0].country, status);
 
       var countries = $('<ul id="country"></ul>');
 
@@ -63,12 +63,11 @@ function Holidays() {
     }
 
     // not pretty, but works!
-    $('<h2 class="">'+ countryData[id].country + '</h2>').prependTo('.tour');
+    $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo('.tour');
+
     // display result from clicked item.
     markUp.append(markUp).fadeIn();
-
-
-    console.log(countryData[id].country);
+    // console.log(countryData[id].country);
 
   });
 
