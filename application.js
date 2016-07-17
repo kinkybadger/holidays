@@ -16,13 +16,15 @@ function Holidays() {
     // Get the json.
     $.getJSON(this.countryUrl, function() {})
     // Retrieval.
-    .done(function(data, status) {
+    .done(function(data) {
       countryData = data;
       var clickCountry = $('<ul id="country"></ul>');
 
       // Loop and add as 'li a' to ul#country.
-      for(i in data) {
-        $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(clickCountry);
+      for(var i in data) {
+        if(data.hasOwnProperty(i)) {
+          $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(clickCountry);
+        }
       }
 
       $('#country').detach().html(clickCountry).appendTo('.menu');
@@ -48,17 +50,19 @@ function Holidays() {
         countryName = countryData[id].country;
 
     // Loop cities of selected country.
-    for(i in countryData[id].cities) {
-      var cityName = countryData[id].cities[i].name,
-          cityDesc = countryData[id].cities[i].description,
-          cityPrice = countryData[id].cities[i].price,
-          cityPriceSymbol = countryData[id].cities[i].symbol;
+    for(var i in countryData[id].cities) {
+      if(countryData[id].cities.hasOwnProperty(i)) {
+        var cityName = countryData[id].cities[i].name,
+            cityDesc = countryData[id].cities[i].description,
+            cityPrice = countryData[id].cities[i].price,
+            cityPriceSymbol = countryData[id].cities[i].symbol;
 
-      // Populate results into html output.
-      markUp.append('<div class="city" data-location="' + cityName + '">'
-        + '<h3 class="name">' + cityName + '</h3>'
-        + '<p class="description">' + cityDesc + '</p>'
-        + '<p class="price">'+ cityPriceSymbol + cityPrice + '</p></div>');
+        // Populate results into html output.
+        markUp.append('<div class="city" data-location="' + cityName + '">'
+          + '<h3 class="name">' + cityName + '</h3>'
+          + '<p class="description">' + cityDesc + '</p>'
+          + '<p class="price">'+ cityPriceSymbol + cityPrice + '</p></div>');
+      }
     }
     // console.log(countryName + ': ' + countryPhotoSrc + countryPhoto);
 
