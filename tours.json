@@ -52,7 +52,7 @@
       "photo": [
         {
           "image": "th-nut-gb.jpg",
-          "source": "assets/photos/",
+          "src": "assets/photos/",
           "title": "England"
         }
       ]
@@ -110,7 +110,7 @@
       "photo": [
         {
           "image": "th-nut-fr.jpg",
-          "source": "assets/photos/",
+          "src": "assets/photos/",
           "title": "France"
         }
       ]
@@ -168,7 +168,7 @@
     "photo": [
       {
         "image": "th-nut-it.jpg",
-        "source": "assets/photos/",
+        "src": "assets/photos/",
         "title": "Italy"
       }
     ]

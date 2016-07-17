@@ -51,9 +51,9 @@ function Holidays() {
         + '<p class="price">'+ countryData[id].cities[i].symbol + countryData[id].cities[i].price + '</p></div>');
     }
 
-    console.log(countryData[id].photo[0].source+countryData[id].photo[0].image);
+    console.log(countryData[id].country + ': ' + countryData[id].photo[0].src+countryData[id].photo[0].image);
     // Not pretty, but works!
-    $("<img src="+countryData[id].photo[0].source+countryData[id].photo[0].image+" />").prependTo(cityList);
+    $("<img src="+countryData[id].photo[0].src+countryData[id].photo[0].image+" />").prependTo(cityList);
     $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo(cityList);
     // Display result for clicked item.
     markUp.append(markUp).fadeIn();
