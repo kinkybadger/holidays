@@ -11,17 +11,15 @@ function Holidays() {
     this.countryUrl = url;
   };
 
-  // Helpers
+  // Helpers.
   this.getCountries = function() {
-    // Get the json
-    $.getJSON(this.countryUrl, function() {
-
-    })
-    // Successful retrieval.
+    // Get the json.
+    $.getJSON(this.countryUrl, function() {})
+    // Retrieval.
     .done(function(data, status) {
       countryData = data;
       var countries = $('<ul id="country"></ul>');
-      // loop and add as li to ul#country.
+      // loop and add as 'li a' to ul#country.
       for(i in data) {
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
       }
@@ -29,9 +27,9 @@ function Holidays() {
       $('#country').detach().html(countries).appendTo('.menu');
       $('h2.country').html(data[0].country).prepend('.tour');
     })
-    // Error report.
+    // If Error, report.
     .fail(function(request, errorType, errorMessage) {
-      console.log("error: " + errorType + " = " + errorMessage);
+      console.log("Request by: " + request + " error: " + errorType + " = " + errorMessage);
     })
   }
 
@@ -50,12 +48,18 @@ function Holidays() {
     // Not pretty, but works!
     $("<img src="+countryData[id].photo[0].src+countryData[id].photo[0].image+" />").prependTo(cityList);
     $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo(cityList);
-    // Display result for clicked item.
+    // Display the result for the clicked item.
     markUp.append(markUp).fadeIn();
   }
 
+  //this.loadPhotosFromCity = function() {
+  //
+  //}
+
   // Event handlers
   $('#country').on('click', 'a', this.loadCitiesByCountry);
+
+  // $('').on('', '', this.loadPhotosFromCity);
 
 }
 
