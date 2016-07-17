@@ -19,6 +19,7 @@ function Holidays() {
     .done(function(data) {
       countryData = data;
       var countries = $('<ul id="country"></ul>');
+
       // loop and add as 'li a' to ul#country.
       for(i in data) {
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
@@ -38,17 +39,29 @@ function Holidays() {
         cityList = $('.tour'),
         markUp =  cityList.html('');
 
-    for(i in countryData[id].cities || i in countryData[id].photo) {
-      markUp.append('<div class="city" data-location="' + countryData[id].cities[i].name + '">'
-        + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
-        + '<p class="description">' + countryData[id].cities[i].description + '</p>'
-        + '<p class="price">'+ countryData[id].cities[i].symbol + countryData[id].cities[i].price + '</p></div>');
+    // Not pretty, but works!
+    var countryPhoto = countryData[id].photo[0].image,
+        countryPhotoTitle = countryData[id].photo[0].title,
+        countryPhotoSrc = countryData[id].photo[0].src,
+        countryName = countryData[id].country;
+
+    for(i in countryData[id].cities) {
+
+      var cityName = countryData[id].cities[i].name,
+        cityDesc = countryData[id].cities[i].description,
+        cityPrice = countryData[id].cities[i].price,
+        cityPriceSymbol = countryData[id].cities[i].symbol;
+
+      markUp.append('<div class="city" data-location="' + cityName + '">'
+        + '<h3 class="name">' + cityName + '</h3>'
+        + '<p class="description">' + cityDesc + '</p>'
+        + '<p class="price">'+ cityPriceSymbol + cityPrice + '</p></div>');
     }
 
-    console.log(countryData[id].country + ': ' + countryData[id].photo[0].src+countryData[id].photo[0].image);
-    // Not pretty, but works!
-    $("<img src="+countryData[id].photo[0].src+countryData[id].photo[0].image+" />").prependTo(cityList);
-    $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo(cityList);
+    console.log(countryName + ': ' + countryPhotoSrc + countryPhoto);
+
+    $("<img title=" + countryPhotoTitle + " src=" + countryPhotoSrc + countryPhoto + " />").prependTo(cityList);
+    $('<h2 class="country">' + countryName + '</h2>').prependTo(cityList);
 
     // Display the result for the clicked item.
     markUp.append(markUp).fadeIn();
