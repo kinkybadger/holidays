@@ -35,12 +35,7 @@ function Holidays() {
     })
   }
 
-  this.loadViewPhotos = function() {
-
-  }
-
-  // Event handlers
-  $('#country').on('click', 'a', function() {
+  this.loadCitiesByCountry = function() {
     var id = $(this).attr('id');
     var cityList = $('.tour');
     var markUp =  cityList.html('');
@@ -57,7 +52,10 @@ function Holidays() {
     $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo(cityList);
     // Display result for clicked item.
     markUp.append(markUp).fadeIn();
-  });
+  }
+
+  // Event handlers
+  $('#country').on('click', 'a', this.loadCitiesByCountry);
 
 }
 
