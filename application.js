@@ -35,6 +35,10 @@ function Holidays() {
     })
   }
 
+  this.loadViewPhotos = function() {
+
+  }
+
   // Event handlers
   $('#country').on('click', 'a', function() {
     var id = $(this).attr('id');
@@ -43,9 +47,10 @@ function Holidays() {
       markUp.append('<div class="city" data-location="' + countryData[id].cities[i].name + '">'
         + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
         + '<p class="description">' + countryData[id].cities[i].description + '</p>'
-        + '<p class="price">'+ countryData[id].cities[i].symbol + countryData[id].cities[i].price
-        + '</p></div>');
+        + '<img src="' + countryData[id].photo[0].source + countryData[id].photo[0].image + '" title="' + countryData[id].photo[0].title + ' />'
+        + '<p class="price">'+ countryData[id].cities[i].symbol + countryData[id].cities[i].price + '</p></div>');
     }
+    console.log(countryData[id].photo[0].source+countryData[id].photo[0].image);
     // Not pretty, but works!
     $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo('.tour');
     // Display result for clicked item.
