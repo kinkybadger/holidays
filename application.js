@@ -1,14 +1,11 @@
 /**
- * ------------------------------ Get some euro tours -------------------------------
+ * ------------------------------ Get some Euro tours -------------------------------
  */
-
-// global variable
+// Global variable
 function Holidays() {
 
   var countryData = [];
-
   this.countryUrl = 'tours.json';
-
   this.setUrl = function(url) {
     this.countryUrl = url;
   };
@@ -19,56 +16,39 @@ function Holidays() {
     $.getJSON(this.countryUrl, function() {
 
     })
+    // Successful retrieval.
     .done(function(data, status) {
-
       countryData = data;
-
-       console.log(data[0].country, status);
-
       var countries = $('<ul id="country"></ul>');
 
       for(i in data) {
-
-        // console.log(data[i].country);
-
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
-
       }
 
       $('#country').detach().html(countries).appendTo('.menu');
-
       $('h2.country').html(data[0].country).prepend('.tour');
-
     })
+    // Error report.
     .fail(function(request, errorType, errorMessage) {
       console.log("error: " + errorType + " = " + errorMessage);
     })
   }
 
-  // event handlers
+  // Event handlers
   $('#country').on('click', 'a', function() {
     var id = $(this).attr('id');
-    // console.log(id);
-    // console.log(countryData[id].cities);
     var markUp =  $('.tour').html('');
-
     for(i in countryData[id].cities) {
-
       markUp.append('<div class="city" data-location="' + countryData[id].cities[i].name + '">'
         + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
         + '<p class="description">' + countryData[id].cities[i].description + '</p>'
         + '<p class="price">' + countryData[id].cities[i].price
         + '</p></div>');
-        // console.log(countryData[id].country);
     }
-
-    // not pretty, but works!
+    // Not pretty, but works!
     $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo('.tour');
-
-    // display result from clicked item.
+    // Display result for clicked item.
     markUp.append(markUp).fadeIn();
-    // console.log(countryData[id].country);
-
   });
 
 }
@@ -76,7 +56,7 @@ function Holidays() {
 
 $(document).ready(function() {
 
-  getTime();
+  //getTime();
 
   var holidays = new Holidays();
 
@@ -88,14 +68,14 @@ $(document).ready(function() {
 
 
 // -----------------------------------------------------------------------------
-var currentTime = new Date($.now());
+//var currentTime = new Date($.now());
 
 // Debug tool.
-//function logIt(text) {
-//  console.log(text);
-//}
+function logIt(text) {
+  console.log(text);
+}
 
 // Date time.
-function getTime() {
-  $('#date').append(currentTime);
-}
+//function getTime() {
+//  $('#date').append(currentTime);
+//}
