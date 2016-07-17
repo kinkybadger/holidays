@@ -6,6 +6,7 @@ function Holidays() {
 
   var countryData = [];
   this.countryUrl = 'tours.json';
+
   this.setUrl = function(url) {
     this.countryUrl = url;
   };
@@ -20,7 +21,7 @@ function Holidays() {
     .done(function(data, status) {
       countryData = data;
       var countries = $('<ul id="country"></ul>');
-
+      // loop and add as li to ul#country.
       for(i in data) {
         $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
       }
@@ -42,7 +43,7 @@ function Holidays() {
       markUp.append('<div class="city" data-location="' + countryData[id].cities[i].name + '">'
         + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
         + '<p class="description">' + countryData[id].cities[i].description + '</p>'
-        + '<p class="price">' + countryData[id].cities[i].price
+        + '<p class="price">'+ countryData[id].cities[i].symbol + countryData[id].cities[i].price
         + '</p></div>');
     }
     // Not pretty, but works!
@@ -56,19 +57,14 @@ function Holidays() {
 
 $(document).ready(function() {
 
-  //getTime();
-
   var holidays = new Holidays();
-
   holidays.getCountries();
-
-
 
 });
 
 
 // -----------------------------------------------------------------------------
-//var currentTime = new Date($.now());
+var currentTime = new Date($.now());
 
 // Debug tool.
 function logIt(text) {
@@ -76,6 +72,6 @@ function logIt(text) {
 }
 
 // Date time.
-//function getTime() {
-//  $('#date').append(currentTime);
-//}
+function getTime() {
+  $('#date').append(currentTime);
+}

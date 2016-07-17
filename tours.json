@@ -6,6 +6,7 @@
           "name": "london",
           "description": "pricey",
           "price": 550.00,
+          "symbol": "&#163;",
           "images": [
             {
               "name": "th-nut.jpg",
@@ -26,12 +27,13 @@
         },
         {
           "name": "nottingham",
-          "description": "they role with their nines!",
+          "description": "This is where they role with their nines! Joking aside a lovely city with a deep historical heritage with robin hood and king john.",
           "price": 200.00,
+          "symbol": "&#163;",
           "images": [
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view fo the trent, surrounding area includes Trent bridge cricket ground, west bridgford and the county council.",
               "source": "assets/photos/"
             },
             {
@@ -61,6 +63,7 @@
           "name": "paris",
           "description": "very french",
           "price": 450.0,
+          "symbol": "&#8364;",
           "images": [
             {
               "name": "th-nut.jpg",
@@ -83,6 +86,7 @@
           "name": "lyon",
           "description": "nice",
           "price": 350.00,
+          "symbol": "&#8364;",
           "images": [
             {
               "name": "th-nut.jpg",
@@ -116,6 +120,7 @@
         "name": "milan",
         "description": "trendy",
         "price": 450.00,
+        "symbol": "&#8364;",
         "images": [
           {
             "name": "th-nut.jpg",
@@ -138,6 +143,7 @@
         "name": "naples",
         "description": "warm",
         "price": 250.00,
+        "symbol": "&#8364;",
         "images": [
           {
             "name": "th-nut.jpg",
