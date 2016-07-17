@@ -42,17 +42,19 @@ function Holidays() {
   // Event handlers
   $('#country').on('click', 'a', function() {
     var id = $(this).attr('id');
-    var markUp =  $('.tour').html('');
-    for(i in countryData[id].cities) {
+    var cityList = $('.tour');
+    var markUp =  cityList.html('');
+    for(i in countryData[id].cities || i in countryData[id].photo) {
       markUp.append('<div class="city" data-location="' + countryData[id].cities[i].name + '">'
         + '<h3 class="name">' + countryData[id].cities[i].name + '</h3>'
         + '<p class="description">' + countryData[id].cities[i].description + '</p>'
-        + '<img src="' + countryData[id].photo[0].source + countryData[id].photo[0].image + '" title="' + countryData[id].photo[0].title + ' />'
         + '<p class="price">'+ countryData[id].cities[i].symbol + countryData[id].cities[i].price + '</p></div>');
     }
+
     console.log(countryData[id].photo[0].source+countryData[id].photo[0].image);
     // Not pretty, but works!
-    $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo('.tour');
+    $("<img src="+countryData[id].photo[0].source+countryData[id].photo[0].image+" />").prependTo(cityList);
+    $('<h2 class="country">'+ countryData[id].country + '</h2>').prependTo(cityList);
     // Display result for clicked item.
     markUp.append(markUp).fadeIn();
   });

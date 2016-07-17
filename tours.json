@@ -51,8 +51,9 @@
       ],
       "photo": [
         {
-          "image": "th-nut.jpg",
-          "source": "assets/photos/"
+          "image": "th-nut-gb.jpg",
+          "source": "assets/photos/",
+          "title": "England"
         }
       ]
   },
@@ -108,8 +109,9 @@
       ],
       "photo": [
         {
-          "image": "th-nut.jpg",
-          "source": "assets/photos/"
+          "image": "th-nut-fr.jpg",
+          "source": "assets/photos/",
+          "title": "France"
         }
       ]
   },
@@ -165,8 +167,9 @@
     ],
     "photo": [
       {
-        "image": "th-nut.jpg",
-        "source": "assets/photos/"
+        "image": "th-nut-it.jpg",
+        "source": "assets/photos/",
+        "title": "Italy"
       }
     ]
   }
