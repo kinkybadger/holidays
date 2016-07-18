@@ -21,49 +21,65 @@ function Holidays() {
     })
     .done(function(data, status) {
 
-      countryData = data;
+        countryData = data;
+        var countries = $('<ul id="country"></ul>');
 
-      console.log(data[0].country, status);
+        for(i in data) {
+            $('<li><a id=' + i + ' href=#' + data[i].country + '>' + data[i].country + '</a></li>').appendTo(countries);
+            $('<li>data: ' + data[i].country + '</li>').appendTo('#log');
+        }
 
-      var countries = $('<ul id="country"></ul>');
-
-      for(i in data) {
-        console.log(data[i].country);
-
-        $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countries);
-      }
-
-
-      $('#country').detach().html(countries).appendTo('.menu');
+        $('#country').detach().html(countries).appendTo('.menu');
 
     })
     .fail(function(request, errorType, errorMessage) {
-      console.log("error: " + errorType + " = " + errorMessage);
+        console.log("error: " + errorType + " = " + errorMessage);
+        $('<li>Fail: ' + errorType + '=' + errorMessage + '</li>').appendTo('#log');
+
     })
 
 
   }
 
-  // event handlers
+  // event handlers when clicking on a city
   $('#country').on('click', 'a', function() {
     var id = $(this).attr('id');
+    $('<li>Clicked a Country ID: ' + id + '</li>').appendTo('#log');
+    $('h1').html('Country: ' + id);
+     
+    var htmlOut = '' ;
 
-    console.log(id);
+    $.each(countryData[id].cities, function(i, value) {
+        for(x in value) {
+         //console.log('name', x);
+         //console.log('val='+value[x]);
+         htmlOut = htmlOut + '<br />' + x + ' >> ' + value[x];
+        }
+    }); 
+    
+        // update the html
+    $('#cities').html(htmlOut);
+     $('.city').fadeIn();
+        
 
-   // console.log(countryData[id].cities);
-    $('h2.country').html('');
-
-    for(i in countryData[id].cities) {
-      console.log(countryData[id].cities[i].name);
-      console.log(countryData[id].cities[i].description);
-      console.log(countryData[id].cities[i].price);
-
-      $('h2.country').append(countryData[id].cities[i].name);
-    }
 
 
 
   });
+  
+    function xxxhtmlList(name, data) {
+
+        var list = [];
+        var html = '';
+        
+        for(var index in data) { 
+           if (data.hasOwnProperty(index)) {
+               var attr = data[index];
+               console.log('field =' + attr);
+           }
+        }
+        return '<ul class="' + name + '"><label>' + name + '</label><li>' + list.join('</li><li>') + '</li></ul>';
+    }
 
 
 }

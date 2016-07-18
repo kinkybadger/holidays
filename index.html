@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Andy</title>
-  <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />
-</head>
-<body>
-  <div id="date"></div>
-  <div id="tours">
-    <h1 class="pageTitle">Andy</h1>
-    <nav class="menu">
+    <head>
+      <title>Andy</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+          
+                <!-- col 1 -->
+                <div class="col-md-8">
+                    <h1 class="pageTitle">Holiday List</h1>
+                    
+                    <div id="date"></div>
+                    <nav class="menu"></nav>
+                    <ul id="country"></ul>
+      
+                    <!-- Add data result for country -->
+                    <div class="country-container">
+                      <h2 class="country">.col-md-8</h2>
+                      <div class="city" data-location="england">
+                        <h3 id="name"></h3>
+                        <h4 id="title"></h4>                        
+                        <p id="description"></p>
+                        <p id="price"></p>
+                      </div>
+                    </div>
+                    <!-- // End data result for country -->
+                    
+                    <!-- cities by country -->
+                    <div id="cities"></div>
+                    <!-- end cities by country -->
+                
+                </div><!-- end col 1 -->l
+            
+                <!-- col 2 -->
+                <div id=log" class="col-md-4">
+                    <h4>Log</h1>
+                    <ul id="log" class="alert alert-success" role="alert">...</u>
+                </div><!-- end col 2 -->
+                
+            </div><!-- end row -->
+        </div><!-- end container -->
 
-    </nav>
-    <!-- Add data result for country -->
-    <div class="tour">
-      <h2 class="country"></h2>
-      <div class="city" data-location="england">
-        <h3 class="name">England</h3>
-        <p class="description">----</p>
-        <p class="price"></p>
-      </div>
-    </div>
-    <!-- // End data result for country -->
-    <form id="countrySelect" action="tours.json" method="GET"></form>
-    <ul id="country"></ul>
-  </div>
 
-  <script src="/assets/js/jquery-1.11.3.js"></script>
-  <script src="/assets/js/application.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="/assets/js/application.js"></script>
+    </body>
 </html>
