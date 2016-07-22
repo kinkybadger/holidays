@@ -18,16 +18,16 @@ function Holidays() {
     // Retrieval.
     .done(function(data) {
       countryData = data;
-      var clickCountry = $('<ul id="country"></ul>');
+      var countryMenu = $('<ul id="country"></ul>');
 
       // Loop and add as 'li a' to ul#country.
       for(var i in data) {
         if(data.hasOwnProperty(i)) {
-          $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(clickCountry);
+          $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countryMenu);
         }
       }
 
-      $('#country').detach().html(clickCountry).appendTo('.menu');
+      $('#country').detach().html(countryMenu).appendTo('.menu');
       $('h2.country').html(data[i].country).prepend('.tour');
     })
 
@@ -58,23 +58,25 @@ function Holidays() {
             cityPriceSymbol = countryData[id].cities[i].symbol;
 
         // Populate results into html output.
-        markUp.append('<div class="city" data-location="' + cityName + '">'
+        markUp.append('<a href="#'+cityName+'" class data-location="'+cityName+'">'
+          + '<div class="city">'
           + '<h3 class="name">' + cityName + '</h3>'
           + '<p class="description">' + cityDesc + '</p>'
-          + '<p class="price">'+ cityPriceSymbol + cityPrice + '</p></div>');
+          + '<p class="price">'+ cityPriceSymbol + cityPrice + '</p>'
+          + '</div></a>');
       }
     }
     // console.log(countryName + ': ' + countryPhotoSrc + countryPhoto);
 
     // Print selected country elements 'title' 'src' and 'image'.
-    $("<img title=" + countryPhotoTitle + " src=" + countryPhotoSrc + countryPhoto + " />").prependTo(cityList);
+    $('<img class="bgimg" title="' + countryPhotoTitle + '" src="' + countryPhotoSrc + countryPhoto + '" />').prependTo(cityList);
     $('<h2 class="country">' + countryName + '</h2>').prependTo(cityList);
 
     // Display the result for the clicked item.
     markUp.append(markUp).fadeIn();
   };
 
-  //this.loadPhotosForCity = function() {
+  //this.loadCityPhotos = function() {
   // Loop cities of selected country.
   //  for(i in countryData[id].cities) {
   //    var cityName = countryData[id].cities[i].images,
@@ -82,15 +84,31 @@ function Holidays() {
   //    console.log(cityName);
   //
   //    // Populate results into html output.
-  //    markUp.append('<div class="city" data-location="' + cityName + '">'
+  //    markUp.append('<div class="cityDetails" data-location="' + cityName + '">'
   //      + '<h3 class="name">' + cityName + '</h3>'
   //      + '<p class="description">' + cityDesc + '</p></div>');
   //  }
   //}
 
+  this.hoverTourIn = function() {
+    $(this).closest('a').addClass('highlight');
+  };
+
+  this.hoverTourOut = function() {
+    $(this).closest('a').removeClass('highlight');
+  };
+
   // Event handlers
   $('#country').on('click', 'a', this.loadCitiesByCountry);
-  //$('').on('', '', this.loadPhotosForCity);
+
+//  $('.tour').on('click', '.goo', function(event) {
+//    console.log($(this));
+//    event.preventDefault();
+//  });
+  //$('').on('', '', this.loadCityPhotos);
+
+  $('.tour').on('mouseenter', 'a', this.hoverTourIn);
+  $('.tour').on('mouseleave', 'a', this.hoverTourOut);
 }
 // End function Holidays();
 

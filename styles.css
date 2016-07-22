@@ -1,29 +1,137 @@
-/* Base */
+/* Base rules
+ * ----------
+ *
+ */
 h2 {
   color: red;
 }
-.photos {
-  display: none;
-}
-/* State*/
-/*.is-loading {
 
-}*/
-.highlight {
-  background-color: rgb(114,114,114);
+/* Layout rules
+ * ------------
+ *
+ */
+
+
+/* Module rules
+ * ------------
+ *
+ */
+.tour {
+  display: none;
+  position: relative;
+  z-index: 1;
 }
-.view-pass {
+.tour .bgimg {
+  height: auto;
+  position: absolute;
+  width: 100%;
+}
+.tour .country {
+
+}
+.tour a {
+  background-color: rgba(114,114,114,0.3);
+}
+.tour .city {
+  position: relative;
+  z-index: 100;
+}
+.city .name {
+
+}
+.city .description {
+
+}
+.city .price {
+
+}
+.city .view-pass {
   display: block;
 }
-.pass {
+.city .pass {
+  display: none;
+}
+
+/* State rules
+ * -----------
+ *
+ */
+#country li a {
+  text-transform: capitalize;
+}
+.is-loading {
+
+}
+.tour a.highlight {
+  background-color: rgba(114,114,114,1.0);
+}
+.photos {
   display: none;
 }
 .photos ul li span {
   display: none;
 }
-.tour {
-  display: none;
-}
-#country li a {
-  text-transform: capitalize;
-}
+
+/* Theme rules
+ * -----------
+ *
+ */
+
+/* Changing State
+ * --------------
+ *
+ */
+
+
+/* experimental */
+
+
+/* standard syntax */
+/*@keyframes cityHover {*/
+  /*from {background-color: transparent}*/
+  /*to {background-color: rgb(144,144,144);}*/
+/*}*/
+/* Chrome, Safari, Opera */
+  /*@-webkit-keyframes cityHover {*/
+  /*from {background-color: transparent;}*/
+  /*to {background-color: rgb(144,144,144);}*/
+/*}*/
+/*.tour a.goo {*/
+  /*background-image: url(assets/photos/th-nut.jpg);*/
+  /*background-position: 50% 50%;*/
+  /*background-repeat: no-repeat;*/
+  /*background-origin: border-box;*/
+
+  /*width: 100px; height: 100px;*/
+  /*border-width: 50px;*/
+  /*border-color: rgba(0,0,0,0);*/
+
+  /*border-radius: 100%;*/
+  /*-moz-border-radius: 100%;*/
+  /*-webkit-border-radius: 100%;*/
+
+  /*-webkit-box-sizing: border-box;*/
+  /*-moz-box-sizing: border-box;*/
+  /*box-sizing: border-box;*/
+
+  /*-webkit-transition: 0.5s ease;*/
+  /*-moz-transition: 0.5s ease;*/
+  /*-ms-transition: 0.5s ease;*/
+  /*-o-transition: 0.5s ease;*/
+  /*transition: 0.5s ease;*/
+  /*text-indent: -9999px;*/
+/*}*/
+/*.tour a.goo:hover {*/
+  /*border-width: 0;*/
+  /*border-color: rgba(0, 0, 0, 0.5);*/
+  /*z-index: 1000;*/
+/*}*/
+
+/*.yon {border: 50px solid rgba(0, 0, 0, 0.7);}*/
+/*.tour a.goo {border: 50px dashed rgba(0, 0, 0, 0.7);}*/
+/*.rok {border: 50px dotted rgba(0, 0, 0, 0.7);}*/
+/*.ryk {border: 50px double rgba(0, 0, 0, 0.7);}*/
+/*.yon:hover{border: 1px solid rgba(0, 0, 0, 0.7);}*/
+/*.tour a.goo:hover{border: 1px dashed rgba(0, 0, 0, 0.7);}*/
+/*.rok:hover{border: 1px dotted rgba(0, 0, 0, 0.7);}*/
+/*.ryk:hover{border: 1px double rgba(0, 0, 0, 0.7);}*/
