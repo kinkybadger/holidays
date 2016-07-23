@@ -5,13 +5,47 @@
 function Holidays() {
 
   var countryData = [];
+  var countries = [];
+  var cities = [];
+
   this.countryUrl = 'tours.json';
 
   // this.setUrl = function(url) {
   //   this.countryUrl = url;
   // };
 
-  // Helpers.
+  // Global named function.
+  function printCities(country) {
+    // Store photo nodes for country.
+    //console.log(country)
+
+    var countryPhoto = country.photo[0].image,
+      countryPhotoTitle = country.photo[0].title,
+      countryPhotoSrc = country.photo[0].src,
+      countryName = country.country,
+      cityList = $('.tour'),
+      markUp =  cityList.html('');
+
+    // Loop cities of selected country.
+    for(var i in country.cities) {
+      if(country.cities.hasOwnProperty(i)) {
+
+        // Populate results into html output.
+        markUp.append('<a href="#'+country.cities[i].name+'" class="city" data-location="'+country.cities[i].name+'">'
+          + country.cities[i].name + '</a>');
+      }
+    }
+
+    // Print selected country elements 'title' 'src' and 'image'.
+    $('<img class="bgimg" title="' + countryPhotoTitle + '" src="' + countryPhotoSrc + countryPhoto + '" />').prependTo(cityList);
+    $('<h2 class="country">' + countryName + '</h2>').prependTo(cityList);
+
+    // Display the result for the clicked item.
+    markUp.append(markUp).fadeIn();
+
+  };
+
+  // this.object method
   this.getCountries = function() {
     // Get the json.
     $.getJSON(this.countryUrl, function() {})
@@ -35,60 +69,30 @@ function Holidays() {
     .fail(function(request, errorType, errorMessage) {
       console.log("Request by: " + request + " error: " + errorType + " = " + errorMessage);
     })
+
   };
 
   this.loadCitiesByCountry = function(e) {
     e.preventDefault();
-    var id = $(this).attr('id'),
-        cityList = $('.tour'),
-        markUp =  cityList.html('');
+    var id = $(this).attr('id');
 
-    // Store photo nodes for country.
-    var countryPhoto = countryData[id].photo[0].image,
-        countryPhotoTitle = countryData[id].photo[0].title,
-        countryPhotoSrc = countryData[id].photo[0].src,
-        countryName = countryData[id].country;
-
-    // Loop cities of selected country.
-    for(var i in countryData[id].cities) {
-      if(countryData[id].cities.hasOwnProperty(i)) {
-        var cityName = countryData[id].cities[i].name,
-            cityDesc = countryData[id].cities[i].description,
-            cityPrice = countryData[id].cities[i].price,
-            cityPriceSymbol = countryData[id].cities[i].symbol;
-
-        // Populate results into html output.
-        markUp.append('<a href="#'+cityName+'" class data-location="'+cityName+'">'
-          + '<div class="city">'
-          + '<h3 class="name">' + cityName + '</h3>'
-          + '<p class="description">' + cityDesc + '</p>'
-          + '<p class="price">'+ cityPriceSymbol + cityPrice + '</p>'
-          + '</div></a>');
-      }
-    }
+    printCities(countryData[id]);
     // console.log(countryName + ': ' + countryPhotoSrc + countryPhoto);
-
-    // Print selected country elements 'title' 'src' and 'image'.
-    $('<img class="bgimg" title="' + countryPhotoTitle + '" src="' + countryPhotoSrc + countryPhoto + '" />').prependTo(cityList);
-    $('<h2 class="country">' + countryName + '</h2>').prependTo(cityList);
-
-    // Display the result for the clicked item.
-    markUp.append(markUp).fadeIn();
   };
 
-  //this.loadCityPhotos = function() {
-  // Loop cities of selected country.
-  //  for(i in countryData[id].cities) {
-  //    var cityName = countryData[id].cities[i].images,
+  this.loadPhotosByCity = function(id) {
 
-  //    console.log(cityName);
-  //
-  //    // Populate results into html output.
-  //    markUp.append('<div class="cityDetails" data-location="' + cityName + '">'
-  //      + '<h3 class="name">' + cityName + '</h3>'
-  //      + '<p class="description">' + cityDesc + '</p></div>');
-  //  }
-  //}
+    console.log($(this));
+    event.preventDefault();
+
+    printCities(countryData[id].cities);
+    //  markUp.append('<a href="#'+country.cities[i].name+'" class data-location="'+country.cities[i].name+'">'
+//    + '<div class="city">'
+//    + '<h3 class="name">' + country.cities[i].name + '</h3>'
+//    + '<p class="description">' + country.cities[i].description + '</p>'
+//    + '<p class="price">'+ country.cities[i].symbol + country.cities[i].price + '</p>'
+//    + '</div></a>');
+  };
 
   this.hoverTourIn = function() {
     $(this).closest('a').addClass('highlight');
@@ -101,10 +105,8 @@ function Holidays() {
   // Event handlers
   $('#country').on('click', 'a', this.loadCitiesByCountry);
 
-//  $('.tour').on('click', '.goo', function(event) {
-//    console.log($(this));
-//    event.preventDefault();
-//  });
+  // Display city detail on click.
+  $('.tour').on('click', '.city', this.loadPhotosByCity(0));
   //$('').on('', '', this.loadCityPhotos);
 
   $('.tour').on('mouseenter', 'a', this.hoverTourIn);
