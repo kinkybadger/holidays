@@ -5,19 +5,14 @@
 function Holidays() {
 
   var countryData = [];
-  var countries = [];
-  var cities = [];
-
   this.countryUrl = 'tours.json';
 
   // this.setUrl = function(url) {
   //   this.countryUrl = url;
   // };
-
-  // Global named function.
   function printCities(country) {
     // Store photo nodes for country.
-    //console.log(country)
+    console.log(country)
 
     var countryPhoto = country.photo[0].image,
       countryPhotoTitle = country.photo[0].title,
@@ -31,9 +26,10 @@ function Holidays() {
       if(country.cities.hasOwnProperty(i)) {
 
         // Populate results into html output.
-        markUp.append('<a href="#'+country.cities[i].name+'" class="city" data-location="'+country.cities[i].name+'">'
+        markUp.append('<a href="#'+country.cities[i].name+'" class data-location="'+country.cities[i].name+'">'
           + country.cities[i].name + '</a>');
       }
+
     }
 
     // Print selected country elements 'title' 'src' and 'image'.
@@ -42,10 +38,8 @@ function Holidays() {
 
     // Display the result for the clicked item.
     markUp.append(markUp).fadeIn();
-
   };
-
-  // this.object method
+  // Helpers.
   this.getCountries = function() {
     // Get the json.
     $.getJSON(this.countryUrl, function() {})
@@ -69,7 +63,6 @@ function Holidays() {
     .fail(function(request, errorType, errorMessage) {
       console.log("Request by: " + request + " error: " + errorType + " = " + errorMessage);
     })
-
   };
 
   this.loadCitiesByCountry = function(e) {
@@ -80,12 +73,9 @@ function Holidays() {
     // console.log(countryName + ': ' + countryPhotoSrc + countryPhoto);
   };
 
-  this.loadPhotosByCity = function(id) {
-
-    console.log($(this));
-    event.preventDefault();
-
+  this.loadPhotosByCity = function() {
     printCities(countryData[id].cities);
+
     //  markUp.append('<a href="#'+country.cities[i].name+'" class data-location="'+country.cities[i].name+'">'
 //    + '<div class="city">'
 //    + '<h3 class="name">' + country.cities[i].name + '</h3>'
@@ -93,6 +83,7 @@ function Holidays() {
 //    + '<p class="price">'+ country.cities[i].symbol + country.cities[i].price + '</p>'
 //    + '</div></a>');
   };
+
 
   this.hoverTourIn = function() {
     $(this).closest('a').addClass('highlight');
@@ -105,8 +96,10 @@ function Holidays() {
   // Event handlers
   $('#country').on('click', 'a', this.loadCitiesByCountry);
 
-  // Display city detail on click.
-  $('.tour').on('click', '.city', this.loadPhotosByCity(0));
+//  $('.tour').on('click', '.city', function(event) {
+//    console.log($(this));
+//    event.preventDefault();
+//  });
   //$('').on('', '', this.loadCityPhotos);
 
   $('.tour').on('mouseenter', 'a', this.hoverTourIn);
@@ -119,6 +112,7 @@ $(document).ready(function() {
 
   var holidays = new Holidays();
   holidays.getCountries();
+
 
 });
 
