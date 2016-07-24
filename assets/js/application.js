@@ -67,7 +67,7 @@ function Holidays() {
             countryID = $(this).attr('data-countryID');
             logit('Clicked CountryID: ' + countryID) ;
                      
-            $('#selected-holiday').html('countryID: ' + countryID);
+            $('#selected-country').html('countryID: ' + countryID);
             
             // The countryID has been set so we can safely print it's cities
             printCities();
@@ -78,21 +78,18 @@ function Holidays() {
   
     function setCityClickEvents() {
         $('#city-list').on('click', 'a', function() {
-            // Update this cityID
+            // Update  cityID
             cityID = $(this).attr('data-cityID');
-            logit('Clicked CityID: ' + cityID) ;
-                     
+            console.log('setCityClickEvents: countryID=' + countryID);
+            console.log('setCityClickEvents: cityID=' + cityID);
+            
             $('#selected-city').html('cityID: ' + cityID);
-
-            //printCityDetail();
-        });
+            console.log(cityID,holidayData[cityID]);
+            logit( 'do something with clicked cityID: '+ holidayData[cityID].name);
+       });     
     };
-
-   
-    this.holidaysDataUrl = '/assets/json/holidays.json';
-
-
-   // A method to set the ajax url
+            
+   // A method to set the ajax :url
     this.setUrl = function(url) {
         this.holidaysDataUrl = url;
     };
@@ -107,13 +104,16 @@ function Holidays() {
   // Get the holidays
   this.getHolidays = function() {
     // Get the json
+    console.log('holidaysDataUrl',this.holidaysDataUrl);
     $.getJSON(this.holidaysDataUrl, function() {
+    //console.log('holidaysDataUrl', this.holidaysDataUrl)
 
     })
-    .done(function(response, status) {
+    .done(function(response) {
         // We have the holiday json response at last and is now a JS object
         // put it into the global holidayData array where we can get at it
         holidayData = response;
+        console.log(response);
         logit('Ajax holidayData loaded ' + holidayData.length + ' items');
         printHolidaysList();
                 
@@ -122,7 +122,7 @@ function Holidays() {
         
     })
     .fail(function(request, errorType, errorMessage) {
-        var message = "Ajax errorType: " + errorType + " errorMessage: " + errorMessage;
+        var message = "Ajax errorType: errorType=" + errorType + " errorMessage: " + errorMessage;
         logit(message);
         $('h1').html(message);
 
@@ -132,7 +132,7 @@ function Holidays() {
   }
 
 
-  
+   
 
 }
 
@@ -140,10 +140,9 @@ function Holidays() {
 $(document).ready(function() {
 
   var holidays = new Holidays();
+  holidays.setUrl('assets/json/holidays.json');
 
   holidays.getHolidays();
-   
-  
 
 });
 
