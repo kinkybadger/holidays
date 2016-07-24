@@ -5,108 +5,145 @@
 // global variable
 function Holidays() {
 
-  var countryData = [];
+    // Global stuff
+    // external funtions until i understand how to use internal methods correctly.
+    
+    // an array of countries which has arrays of cities 
+    var holidayData = [];  
+    // The selected country and city id's
+    var countryID = false ;
+    var cityID = false ;
+    
+    function printHolidaysList() {
+        for(var i in holidayData) {
+            if (holidayData.hasOwnProperty(i)) {
+               addLi('#country-list', '<a data-countryID="' + i + '" href="#' + holidayData[i].country + '">' + holidayData[i].country + '</a>');
+            }
+        };
+    }; 
+    
+    function logit(string) {
+        addLi('#log', string);
+    };
+   
+    
+    function addLi(targetID, content) {
+        console.log(targetID);
+        $('<li>' + content + '</li>').appendTo(targetID);
+    }
 
-  this.countryUrl = '/assets/json/holidays.json';
+    /**
+      * Print destination cities for the selected holidayID
+     */ 
+    function printCities(){
+        
+        
+        // empty the dom
+        $('#city-list').html('');
 
-  this.setUrl = function(url) {
-    this.countryUrl = url;
-  };
+        $.each(holidayData[countryID].cities, function(id, city) {
+            console.log(id, city.name);
+            // Inject a new ul for each city with an ID
+            $('<ul id="city-' + id + '"></ul>').appendTo('#city-list');
+            
+            var appendID = '#city-list ul#city-'+ id ;
+            
+            addLi(appendID, 'Name: <a class="city" data-cityID="'+ id +'" href="#">' + city.name + '</a>');
+            addLi(appendID, 'Desc: ' + city.description);
+            addLi(appendID, 'Price: ' + city.price);
+            
+            // city images is an array
+            $.each(city.images, function(x, image) {
+                addLi(appendID, '<img alt="' + image.title + '" src="' + image.source + image.name +'" />') ;
+            });
 
-  // Helpers
-  this.getCountries = function() {
+        }); 
+
+    }
+     
+    function setCountryClickEvents() {
+        $('#country-list').on('click', 'a', function() {
+            // Update this HoldayID
+            countryID = $(this).attr('data-countryID');
+            logit('Clicked CountryID: ' + countryID) ;
+                     
+            $('#selected-holiday').html('countryID: ' + countryID);
+            
+            // The countryID has been set so we can safely print it's cities
+            printCities();
+            // The cities have a link that needs to do some work when clicked.
+            setCityClickEvents();
+        });
+    };
+  
+    function setCityClickEvents() {
+        $('#city-list').on('click', 'a', function() {
+            // Update this cityID
+            cityID = $(this).attr('data-cityID');
+            logit('Clicked CityID: ' + cityID) ;
+                     
+            $('#selected-city').html('cityID: ' + cityID);
+
+            //printCityDetail();
+        });
+    };
+
+   
+    this.holidaysDataUrl = '/assets/json/holidays.json';
+
+
+   // A method to set the ajax url
+    this.setUrl = function(url) {
+        this.holidaysDataUrl = url;
+    };
+    
+    
+  
+   
+
+
+    
+
+  // Get the holidays
+  this.getHolidays = function() {
     // Get the json
-    $.getJSON(this.countryUrl, function() {
+    $.getJSON(this.holidaysDataUrl, function() {
 
     })
-    .done(function(data, status) {
-
-        countryData = data;
-        var countries = $('<ul id="country"></ul>');
-
-        for(i in data) {
-            $('<li><a id=' + i + ' href=#' + data[i].country + '>' + data[i].country + '</a></li>').appendTo(countries);
-            $('<li>data: ' + data[i].country + '</li>').appendTo('#log');
-        }
-
-        $('#country').detach().html(countries).appendTo('.menu');
-
+    .done(function(response, status) {
+        // We have the holiday json response at last and is now a JS object
+        // put it into the global holidayData array where we can get at it
+        holidayData = response;
+        logit('Ajax holidayData loaded ' + holidayData.length + ' items');
+        printHolidaysList();
+                
+        // activate the links
+        setCountryClickEvents();
+        
     })
     .fail(function(request, errorType, errorMessage) {
-        console.log("error: " + errorType + " = " + errorMessage);
-        $('<li>Fail: ' + errorType + '=' + errorMessage + '</li>').appendTo('#log');
+        var message = "Ajax errorType: " + errorType + " errorMessage: " + errorMessage;
+        logit(message);
+        $('h1').html(message);
 
     })
 
 
   }
 
-  // event handlers when clicking on a city
-  $('#country').on('click', 'a', function() {
-    var id = $(this).attr('id');
-    $('<li>Clicked a Country ID: ' + id + '</li>').appendTo('#log');
-    $('h1').html('Country: ' + id);
-     
-    var htmlOut = '' ;
 
-    $.each(countryData[id].cities, function(i, value) {
-        for(x in value) {
-         //console.log('name', x);
-         //console.log('val='+value[x]);
-         htmlOut = htmlOut + '<br />' + x + ' >> ' + value[x];
-        }
-    }); 
-    
-        // update the html
-    $('#cities').html(htmlOut);
-     $('.city').fadeIn();
-        
-
-
-
-
-  });
   
-    function xxxhtmlList(name, data) {
-
-        var list = [];
-        var html = '';
-        
-        for(var index in data) { 
-           if (data.hasOwnProperty(index)) {
-               var attr = data[index];
-               console.log('field =' + attr);
-           }
-        }
-        return '<ul class="' + name + '"><label>' + name + '</label><li>' + list.join('</li><li>') + '</li></ul>';
-    }
-
 
 }
 
 
 $(document).ready(function() {
 
-  getTime();
-
   var holidays = new Holidays();
 
-  holidays.getCountries();
-
-
+  holidays.getHolidays();
+   
+  
 
 });
 
-
-// -----------------------------------------------------------------------------
-var currentTime = new Date($.now());
-
-// Debug tool.
-//function logIt(text) {
-//  console.log(text);
-//}
-
-// Date time.
-function getTime() {
-  $('#date').append(currentTime);
-}

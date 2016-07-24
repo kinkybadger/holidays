@@ -4,7 +4,7 @@
       <title>Andy</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-      <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />
+      <!--<link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />-->
     </head>
     <body>
         <div class="container">
@@ -13,33 +13,22 @@
                 <!-- col 1 -->
                 <div class="col-md-8">
                     <h1 class="pageTitle">Holiday List</h1>
-                    
-                    <div id="date"></div>
-                    <nav class="menu"></nav>
-                    <ul id="country"></ul>
-      
-                    <!-- Add data result for country -->
-                    <div class="country-container">
-                      <h2 class="country">.col-md-8</h2>
-                      <div class="city" data-location="england">
-                        <h3 id="name"></h3>
-                        <h4 id="title"></h4>                        
-                        <p id="description"></p>
-                        <p id="price"></p>
-                      </div>
-                    </div>
-                    <!-- // End data result for country -->
-                    
-                    <!-- cities by country -->
-                    <div id="cities"></div>
-                    <!-- end cities by country -->
-                
-                </div><!-- end col 1 -->l
+    
+                    <!-- The main template to populate from the app -->
+                    <div class="holiday-template"> 
+                        <h2 id="selected-holiday"></h2>
+                        <h4 id="selected-city"></h4>
+                        
+                        <ul id="country-list"></ul>
+                        <div id="city-list"></div>
+                    </div><!-- end template -->
+
+                </div><!-- end col 1 -->
             
                 <!-- col 2 -->
                 <div id=log" class="col-md-4">
                     <h4>Log</h1>
-                    <ul id="log" class="alert alert-success" role="alert">...</u>
+                    <ul id="log" class="alert alert-success" role="alert">...</ul>
                 </div><!-- end col 2 -->
                 
             </div><!-- end row -->
