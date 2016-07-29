@@ -6,42 +6,44 @@
           "name": "london",
           "description": "pricey",
           "price": 550.00,
+          "symbol": "&#163;",
           "images": [
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of tower bridge",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of parliament",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Not so pleasent view of Boris Johnson",
               "source": "assets/photos/"
             }
           ]
         },
         {
           "name": "nottingham",
-          "description": "they role with their nines!",
+          "description": "This is where they role with their nines! Joking aside a lovely city with a deep historical heritage with robin hood and king john.",
           "price": 200.00,
+          "symbol": "&#163;",
           "images": [
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view fo the trent",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of the castle",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of the trip to jerusalem",
               "source": "assets/photos/"
             }
           ]
@@ -49,8 +51,9 @@
       ],
       "photo": [
         {
-          "image": "th-nut.jpg",
-          "source": "assets/photos/"
+          "image": "th-nut-gb.jpg",
+          "src": "assets/photos/",
+          "title": "England"
         }
       ]
   },
@@ -61,20 +64,21 @@
           "name": "paris",
           "description": "very french",
           "price": 450.0,
+          "symbol": "&#8364;",
           "images": [
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of paris",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of the seinne",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of the Eifal tower",
               "source": "assets/photos/"
             }
           ]
@@ -83,20 +87,21 @@
           "name": "lyon",
           "description": "nice",
           "price": 350.00,
+          "symbol": "&#8364;",
           "images": [
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view Of Cathedral",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view of cafe",
               "source": "assets/photos/"
             },
             {
               "name": "th-nut.jpg",
-              "title": "Pleasent view",
+              "title": "Pleasent view old folk playin boulle",
               "source": "assets/photos/"
             }
           ]
@@ -104,8 +109,9 @@
       ],
       "photo": [
         {
-          "image": "th-nut.jpg",
-          "source": "assets/photos/"
+          "image": "th-nut-fr.jpg",
+          "src": "assets/photos/",
+          "title": "France"
         }
       ]
   },
@@ -116,20 +122,21 @@
         "name": "milan",
         "description": "trendy",
         "price": 450.00,
+        "symbol": "&#8364;",
         "images": [
           {
             "name": "th-nut.jpg",
-            "title": "Pleasent view",
+            "title": "Pleasent view of plaza",
             "source": "assets/photos/"
           },
           {
             "name": "th-nut.jpg",
-            "title": "Pleasent view",
+            "title": "Pleasent view of louis vuitton",
             "source": "assets/photos/"
           },
           {
             "name": "th-nut.jpg",
-            "title": "Pleasent view",
+            "title": "Pleasent view of high street",
             "source": "assets/photos/"
           }
         ]
@@ -138,20 +145,21 @@
         "name": "naples",
         "description": "warm",
         "price": 250.00,
+        "symbol": "&#8364;",
         "images": [
           {
             "name": "th-nut.jpg",
-            "title": "Pleasent view",
+            "title": "Pleasent view of dying beggar",
             "source": "assets/photos/"
           },
           {
             "name": "th-nut.jpg",
-            "title": "Pleasent view",
+            "title": "Pleasent view of the sea",
             "source": "assets/photos/"
           },
           {
             "name": "th-nut.jpg",
-            "title": "Pleasent view",
+            "title": "Pleasent view of harbour",
             "source": "assets/photos/"
           }
         ]
@@ -159,8 +167,9 @@
     ],
     "photo": [
       {
-        "image": "th-nut.jpg",
-        "source": "assets/photos/"
+        "image": "candyribbens.jpg",
+        "src": "assets/photos/",
+        "title": "Italy"
       }
     ]
   }
