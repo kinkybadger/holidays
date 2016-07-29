@@ -14,6 +14,9 @@ function Holidays() {
     var countryID = false ;
     var cityID = false ;
     
+    /**
+     * print the countries with a linked name
+     */
     function printHolidaysList() {
         for(var i in holidayData) {
             if (holidayData.hasOwnProperty(i)) {
@@ -22,18 +25,25 @@ function Holidays() {
         };
     }; 
     
+    /**
+     * Log to the log panel
+     * @param {string} message to log
+     */
     function logit(string) {
         addLi('#log', string);
     };
    
-    
+    /**
+     * Add a list item.
+     * @param {string} targetID - The id to append to.
+     * @param {string} content - The text.
+     */ 
     function addLi(targetID, content) {
-        console.log(targetID);
         $('<li>' + content + '</li>').appendTo(targetID);
     }
 
     /**
-      * Print destination cities for the selected holidayID
+     * Print destination cities for the selected countryID
      */ 
     function printCities(){
         
@@ -42,10 +52,10 @@ function Holidays() {
         $('#city-list').html('');
 
         $.each(holidayData[countryID].cities, function(id, city) {
-            console.log(id, city.name);
             // Inject a new ul for each city with an ID
             $('<ul id="city-' + id + '"></ul>').appendTo('#city-list');
             
+            // The element ID to append to (see above ul id)
             var appendID = '#city-list ul#city-'+ id ;
             
             addLi(appendID, 'Name: <a class="city" data-cityID="'+ id +'" href="#">' + city.name + '</a>');
@@ -73,19 +83,19 @@ function Holidays() {
             printCities();
             // The cities have a link that needs to do some work when clicked.
             setCityClickEvents();
+            return false;
         });
     };
   
     function setCityClickEvents() {
         $('#city-list').on('click', 'a', function() {
-            // Update  cityID
+            // Update  cityID from the clicked link attribute
             cityID = $(this).attr('data-cityID');
-            console.log('setCityClickEvents: countryID=' + countryID);
-            console.log('setCityClickEvents: cityID=' + cityID);
+            logit('Clicked: ' + holidayData[countryID].cities[cityID].name);
             
             $('#selected-city').html('cityID: ' + cityID);
-            console.log(cityID,holidayData[cityID]);
-            logit( 'do something with clicked cityID: '+ holidayData[cityID].name);
+            logit( 'do something with clicked countryID: ' + countryID + ' cityID.name: '+ holidayData[countryID].cities[cityID].name);
+            return false;
        });     
     };
             
@@ -94,46 +104,34 @@ function Holidays() {
         this.holidaysDataUrl = url;
     };
     
-    
-  
-   
 
 
-    
-
-  // Get the holidays
-  this.getHolidays = function() {
-    // Get the json
-    console.log('holidaysDataUrl',this.holidaysDataUrl);
-    $.getJSON(this.holidaysDataUrl, function() {
-    //console.log('holidaysDataUrl', this.holidaysDataUrl)
-
-    })
-    .done(function(response) {
-        // We have the holiday json response at last and is now a JS object
-        // put it into the global holidayData array where we can get at it
-        holidayData = response;
-        console.log(response);
-        logit('Ajax holidayData loaded ' + holidayData.length + ' items');
-        printHolidaysList();
-                
-        // activate the links
-        setCountryClickEvents();
-        
-    })
-    .fail(function(request, errorType, errorMessage) {
-        var message = "Ajax errorType: errorType=" + errorType + " errorMessage: " + errorMessage;
-        logit(message);
-        $('h1').html(message);
-
-    })
+    // Get the holidays
+    this.getHolidays = function() {
+        // Get the json
+        console.log('holidaysDataUrl',this.holidaysDataUrl);
+        $.getJSON(this.holidaysDataUrl, function() {
 
 
-  }
+        })
+        .done(function(response) {
+            // We have the holiday json response at last and is now a JS object
+            // put it into the global holidayData array where we can get at it
+            holidayData = response;
+            logit('Ajax holidayData loaded ' + holidayData.length + ' countries');
+            printHolidaysList();
+                    
+            // activate the links
+            setCountryClickEvents();
+            
+        })
+        .fail(function(request, errorType, errorMessage) {
+            var message = "Ajax errorType: errorType=" + errorType + " errorMessage: " + errorMessage;
+            logit(message);
+            $('h1').html(message);
 
-
-   
-
+        })
+    }
 }
 
 
@@ -141,7 +139,6 @@ $(document).ready(function() {
 
   var holidays = new Holidays();
   holidays.setUrl('assets/json/holidays.json');
-
   holidays.getHolidays();
 
 });
