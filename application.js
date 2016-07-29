@@ -51,7 +51,7 @@ function Holidays() {
       // Loop and add as 'li a' to ul#country.
       for(var i in data) {
         if(data.hasOwnProperty(i)) {
-          $('<li><a id='+i+' href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countryMenu);
+          $('<li><a id='+i+' class="country" href=#'+data[i].country+'>'+data[i].country+'</a></li>').appendTo(countryMenu);
         }
       }
 
@@ -94,7 +94,7 @@ function Holidays() {
   };
 
   // Event handlers
-  $('#country').on('click', 'a', this.loadCitiesByCountry);
+  $('#country').on('click', '.country', this.loadCitiesByCountry);
 
 //  $('.tour').on('click', '.city', function(event) {
 //    console.log($(this));

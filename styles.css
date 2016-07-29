@@ -23,7 +23,7 @@ h2 {
 }
 .tour .bgimg {
   height: auto;
-  width: 100%;
+  max-width: 100%;
 }
 .tour .country {
 
