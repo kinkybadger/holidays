@@ -7,7 +7,12 @@
   "license": "MIT",
   "devDependencies": {
     "http-server": "^0.6.1",
-    "tmp": "0.0.23"
+    "tmp": "0.0.23",
+    "bootstrap": "*",
+    "font-awesome": "*",
+    "grunt": "*",
+    "jquery": "^2.0.0",
+    "less": "*"
   },
   "scripts": {
     "prestart": "npm install",
