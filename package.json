@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/leotheobald/holidays/issues"
   },
-  "homepage": "https://github.com/leotheobald/holidays"
+  "homepage": "https://github.com/leotheobald/holidays",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
 }
