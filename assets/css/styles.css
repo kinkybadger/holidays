@@ -22,7 +22,7 @@ h2 {
   display: none;
 }
 .city {
-  display: none;
+ /* display: none;*/
 }
 #country li a {
   text-transform: capitalize;
