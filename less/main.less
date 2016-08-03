@@ -1,10 +1,23 @@
-/* Variables */
+// Variables
 @baseblue: #0000ff;
 @basegreen: #00ff00;
 @basered: #ff0000;
 
-/* Usage */
+// Mixins
+.responsive(@maxWidth; @minWidth; @rules) {
+  @media only screen and (max-width: @maxWidth) and (min-width: @minWidth) {
+    @rules();
+  }
+}
+
+// Usage
 h1 {
   color: @baseblue;
   border-bottom: 1px dotted @baseblue;
+  .responsive(767px, 481px, {
+    color: @basegreen;
+  });
+	.responsive(1024px, 768px, {
+    color: @basered;
+  });
 }
