@@ -1,1 +1,1 @@
-h1{color:#0000ff}
+h1{color:#0000ff;border-bottom:1px dotted #0000ff}@media only screen and (max-width:767px) and (min-width:481px){h1{color:#00ff00}}@media only screen and (max-width:1024px) and (min-width:768px){h1{color:#ff0000}}
