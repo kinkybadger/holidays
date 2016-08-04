@@ -1,4 +1,4 @@
-// Semantic grid framework
+// Semantic grid framework includes
 @import "grid.less";
 @import "semantic-grid-helper.less";
 
@@ -10,12 +10,15 @@
 @basegreen: #00ff00;
 @basered: #ff0000;
 
+@mauve: #630537;
+
 // Mixins
-.responsive(@maxWidth; @minWidth; @rules) {
-  @media only screen and (max-width: @maxWidth) and (min-width: @minWidth) {
+.responsive(@minWidth; @maxWidth; @rules) {
+  @media only screen and (min-width: @minWidth) and (max-width: @maxWidth) {
     @rules();
   }
 }
+
 // .desktop(@units) {
 //   @media only screen and (min-width: 601px) and (max-width: 1100px) {
 //     @column-width: 60;
@@ -36,20 +39,27 @@
 //     .column(@units);
 //   }
 // }
+
 // Base
-.col1 {
-    background-color: #630537;
-    #grid > .setGridWidths(6, 8, 1, 3);
+body {
+  margin: 0;
 }
-.col2 {
+.col {
+  &1 {
+    background-color: @mauve;
+    #grid > .setGridWidths(6, 8, 1, 3);
+  }
+  &2 {
     background-color: #f0f9e3;
     #grid > .setGridWidths(6, 2, 3, 5);
-}
-.col3 {
+  }
+  &3 {
     background-color: #cad1c1;
     #grid > .setGridWidths(12, 2, 6, 8);
+  }
 }
-// Animate
+
+// Animate column width changes across breakpoints
 .col1,
 .col2,
 .col3 {
@@ -60,14 +70,15 @@
        -o-transition: all 1s ease-in 0.2s;
           transition: all 1s ease-in 0.2s;
 }
+
 // Theme
 h1 {
   color: @baseblue;
   border-bottom: 1px dotted @baseblue;
-  .responsive(767px, 481px, {
-    color: @basegreen;
+  .responsive(481px, 768px, {
+    color: @basered;
   });
-	.responsive(1024px, 768px, {
+	.responsive(767px, 1024px, {
     color: @basered;
   });
 }

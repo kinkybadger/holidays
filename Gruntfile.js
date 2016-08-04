@@ -2,10 +2,11 @@ module.exports = function(grunt) {
   require('jit-grunt')(grunt);
 
   grunt.initConfig({
+    pkg:grunt.file.readJSON('package.json'),
     less: {
       development: {
         options: {
-          compress: true,
+          compress: false,
           yuicompress: true,
           optimization: 2
         },
@@ -15,6 +16,9 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      options: {livereload:true},
+      files:['./**'],
+      tasks:[],
       styles: {
         files: ['less/**/*.less'], // which files to watch
         tasks: ['less'],
@@ -22,7 +26,23 @@ module.exports = function(grunt) {
           nospawn: true
         }
       }
+    },
+    express: {
+      all: {
+        options: {
+          port:3000,
+          hostname:'localhost',
+          bases:['./'],
+          livereload:true
+        }
+      }
     }
   });
-  grunt.registerTask('default', ['less', 'watch']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-contrib-less');
+
+	grunt.registerTask('server', ['express','express-keepalive','watch']);
+
+  //grunt.registerTask('default', ['less', 'watch']);
 };
