@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     less: {
       development: {
         options: {
+          livereload: true,
           compress: false,
           yuicompress: true,
           optimization: 2
@@ -18,7 +19,7 @@ module.exports = function(grunt) {
     watch: {
       options: {livereload:true},
       files:['./**'],
-      tasks:[],
+      tasks:['express'],
       styles: {
         files: ['less/**/*.less'], // which files to watch
         tasks: ['less'],
@@ -30,19 +31,20 @@ module.exports = function(grunt) {
     express: {
       all: {
         options: {
-          port:3000,
-          hostname:'localhost',
-          bases:['./'],
-          livereload:true
+          port: 3000,
+          hostname: 'localhost',
+          bases: ['./'],
+          livereload: true
         }
       }
     }
   });
+
   grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-contrib-less');
 
 	grunt.registerTask('server', ['express','express-keepalive','watch']);
-
-  //grunt.registerTask('default', ['less', 'watch']);
+  grunt.registerTask('render', ['less', 'watch']);
+  
 };
