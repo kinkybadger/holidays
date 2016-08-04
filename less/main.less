@@ -1,0 +1,86 @@
+// Semantic grid framework includes
+@import "grid.less";
+@import "semantic-grid-helper.less";
+
+// Variables
+// ------------------------
+@total-width: 100%;
+
+@baseblue: #0000ff;
+@basegreen: #00ff00;
+@basered: #ff0000;
+@mauve: #630537;
+
+// Mixins
+.responsive(@minWidth; @maxWidth; @rules) {
+  @media only screen and (min-width: @minWidth) and (max-width: @maxWidth) {
+    @rules();
+  }
+}
+
+// .desktop(@units) {
+//   @media only screen and (min-width: 601px) and (max-width: 1100px) {
+//     @column-width: 60;
+//     @gutter-width: 20;
+//     @columns: 12;
+//     @total-width: 100%;
+//
+//     .column(@units);
+//   }
+// }
+// .mobile(@units) {
+//   @media only screen and (max-width: 350px) {
+//     @column-width: 30;
+//     @gutter-width: 20;
+//     @columns: 6;
+//     @total-width: 100%;
+//
+//     .column(@units);
+//   }
+// }
+
+// Base
+body {
+  margin: 0;
+}
+.col {
+  &1 {
+    background-color: @mauve;
+    #grid > .setGridWidths(6, 8, 2, 3);
+  }
+  &2 {
+    background-color: #f0f9e3;
+    #grid > .setGridWidths(6, 2, 4, 5);
+  }
+  &3 {
+    background-color: #cad1c1;
+    #grid > .setGridWidths(12, 2, 6, 8);
+  }
+}
+
+// Animate column width changes across breakpoints
+.col1,
+.col2,
+.col3 {
+  height: 300px;
+  -webkit-transition: all 1s ease-in 0.2s;
+     -moz-transition: all 1s ease-in 0.2s;
+      -ms-transition: all 1s ease-in 0.2s;
+       -o-transition: all 1s ease-in 0.2s;
+          transition: all 1s ease-in 0.2s;
+}
+
+// Theme
+h1 {
+  color: @baseblue;
+  border-bottom: 1px dotted @baseblue;
+  .responsive(481px, 768px, {
+    color: @basegreen;
+  });
+	.responsive(767px, 1024px, {
+    color: @basered;
+  });
+  .responsive(0px, 480px, {
+    color: @mauve;
+  });
+}

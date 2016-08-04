@@ -1,0 +1,84 @@
+//
+// Semantic gs helper mixins.
+// Helper mixins to be used with Semantic gs with a responsive layout.
+// To find out about Semantic gs, go to http://semantic.gs/
+// --------------------------------------------------
+
+// Mediaquery variables
+// Override with your default breakpoints
+@mq_extraLarge: ~"only screen and (min-width: 1101px)";
+@mq_desktop:    ~"only screen and (min-width: 601px) and (max-width: 1100px)";
+@mq_tablet:     ~"only screen and (min-width: 351px) and (max-width: 600px)";
+@mq_mobile:     ~"only screen and (max-width: 350px)";
+
+
+// Mixins
+// Namespace #grid
+// ------------------------
+#grid {
+    //Set Grid Width Mixin
+    //Sets the Grid Width for all four common breakpoints
+    .setGridWidths(@largeColUnits, @desktopColUnits, @tabletColUnits, @mobileColUnits) {
+        #grid > .extraLargeGrid(@largeColUnits);
+        #grid > .desktopGrid(@desktopColUnits);
+        #grid >.tabletGrid(@tabletColUnits);
+        #grid >.mobileGrid(@mobileColUnits);
+    }
+    // Extra large grid mixin.
+    // Predefines column width, gutter width and total columns to 73, 20, 12
+    .extraLargeGrid(@colUnits, @pushOffset: 0,@pullOffset: 0) {
+        @media @mq_extraLarge {
+            .setVariables(73, 20, 12);
+            .column(@colUnits);
+            .push(@pushOffset);
+            .pull(@pullOffset);
+        }
+    }
+    // Desktop grid mixin.
+    // Predefines column width, gutter width and total columns to 73, 20, 12
+    .desktopGrid(@colUnits, @pushOffset: 0,@pullOffset: 0) {
+        @media @mq_desktop {
+            .setVariables(73, 20, 12);
+            .column(@colUnits);
+            .push(@pushOffset);
+            .pull(@pullOffset);
+        }
+    }
+    // Tablet grid mixin.
+    // Predefines column width, gutter width and total columns to 31, 20, 10
+    .tabletGrid(@colUnits,@pushOffset: 0,@pullOffset: 0) {
+        @media @mq_tablet {
+            .setVariables(31, 20, 10);
+            .column(@colUnits);
+            .push(@pushOffset);
+            .pull(@pullOffset);
+        }
+    }
+    // Extra large grid mixin.
+    // Predefines column width, gutter width and total columns to 32, 10, 8
+    .mobileGrid(@colUnits,@pushOffset: 0,@pullOffset: 0) {
+        @media @mq_mobile {
+            .setVariables(32, 10, 8);
+            .column(@colUnits);
+            .push(@pushOffset);
+            .pull(@pullOffset);
+        }
+    }
+    // Custom grid mixin.
+    .customGrid(@mediaQuery, @columnWidth, @gutterWidth, @colUnits, @pushOffset: 0, @pullOffset: 0) {
+        @media @mediaQuery {
+            .setVariables(@columnWidth, @gutterWidth, @colUnits);
+            .column(@colUnits);
+            .push(@pushOffset);
+            .pull(@pullOffset);
+        }
+    }
+    // Set variables mixin.
+    // Sets column width, gutter width and total columns.
+    .setVariables(@columnWidth, @gutterWidth, @colUnits) {
+        @column-width: @columnWidth;
+        @gutter-width: @gutterWidth;
+        @columns: @colUnits;
+        @gridsystem-width: (@column-width*@columns) + (@gutter-width*@columns) * 1px;
+    }
+}
