@@ -1,40 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="holidayApp">
     <head>
-      <title>Andy</title>
+      <title>Angular</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" />
+      <link rel="stylesheet" href="/app/assets/css/styles.css" type="text/css" />
     </head>
     <body>
         <div class="container">
-            <div class="row">
-          
-                <!-- col 1 -->
-                <div class="col-md-8">
-                    <h1 class="pageTitle">Holiday List (Angular)</h1>
-    
-                    <!-- The main template to populate from the app -->
-                    <div class="holiday-template"> 
-                        <h2 id="selected-country"></h2>
-                        <h4 id="selected-city"></h4>
-                        
-                        <ul id="country-list"></ul>
-                        <div id="city-list"></div>
-                    </div><!-- end template -->
-
-                </div><!-- end col 1 -->
+            <div ng-controller="holidayController"> 
             
-                <!-- col 2 -->
-                <div id=log" class="col-md-4">
-                    <h4>Log</h1>
-                    <ul id="log" class="alert alert-success" role="alert">...</ul>
-                </div><!-- end col 2 -->
-                
-            </div><!-- end row -->
-        </div><!-- end container -->
+                <ul>
+                    <li ng-repeat="city in holidays.cities">
+                        city=<button>City= {{city.name}}</button>
+                    </li>
+                </ul>
 
+
+                
+                <h2>Country: {{holiday.country[0].name}}</h2>
+                <h3>bb {{holiday.country.name}}</h3>
+                <h4>cc {{holiday.country.cities[0]}}</h4>
+
+            </div>
+        </div>
+        
         <script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
-        <script type="text/javascript" src="/assets/js/app.js"></script>
     </body>
 </html>
+
+<script>
+var app = angular.module('holidayApp', []);
+app.controller('holidayController', function($scope, $http) {
+    
+    // You clicked on a country, expose all the cities
+    $scope.showCities = function() {
+        $scope.holiday = this.holidays;
+        console.log(this.holiday.cities)
+    }
+    
+    // Ajax get the json data and make it available to this controller
+    $http.get("/app/json/holidays.json")
+    .then(function(response) {
+        $scope.holidays = response.data;
+    });
+});
+</script>

@@ -1,0 +1,29 @@
+/* Base */
+h2 {
+  color: red;
+}
+.photos {
+  display: none;
+}
+/* State*/
+/*.is-loading {
+
+}*/
+.highlight {
+  background-color: rgb(114,114,114);
+}
+.view-pass {
+  display: block;
+}
+.pass {
+  display: none;
+}
+.photos ul li span {
+  display: none;
+}
+.city {
+ /* display: none;*/
+}
+#country li a {
+  text-transform: capitalize;
+}
